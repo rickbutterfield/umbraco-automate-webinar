@@ -1,0 +1,90 @@
+{
+  "$schema": "https://demotime.show/demo-time.schema.json",
+  "title": "A custom external action",
+  "description": "Demo Time version of prezl.yaml stage \"action\" / CODE-WALKTHROUGH-SCRIPT.md beats 9-14. One demo per beat so Next pauses on each.",
+  "version": 2,
+  "demos": [
+    {
+      "title": "9. Same shape as the trigger",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/Automate/CreateSupplierBookingAction.cs",
+          "startPlaceholder": "[Action(\"travel.createSupplierBooking\", \"Create Supplier Booking\",",
+          "endPlaceholder": ": ActionBase<CreateSupplierBookingSettings, CreateSupplierBookingOutput>"
+        }
+      ],
+      "notes": {
+        "path": ".demo/notes/09-action-attribute.md"
+      }
+    },
+    {
+      "title": "10. Which fields the editor can bind",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/Automate/CreateSupplierBookingSettings.cs",
+          "startPlaceholder": "public sealed class CreateSupplierBookingSettings",
+          "endPlaceholder": "public string Source { get; set; } = \"Website\""
+        }
+      ],
+      "notes": {
+        "path": ".demo/notes/10-action-settings.md"
+      }
+    },
+    {
+      "title": "11. What the next step gets",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/Automate/CreateSupplierBookingOutput.cs",
+          "startPlaceholder": "public sealed class CreateSupplierBookingOutput",
+          "endPlaceholder": "public required string BookingReference { get; init; }"
+        }
+      ],
+      "notes": {
+        "path": ".demo/notes/11-action-output.md"
+      }
+    },
+    {
+      "title": "12. Credentials, once",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/Automate/TravelSupplierConnectionType.cs",
+          "startPlaceholder": "[ConnectionType(\"travel.supplierPortal\", \"Global Travel Suppliers\",",
+          "endPlaceholder": "public sealed class TravelSupplierConnectionType : ConnectionTypeBase<TravelSupplierConnectionSettings>"
+        }
+      ],
+      "notes": {
+        "path": ".demo/notes/12-connection.md"
+      }
+    },
+    {
+      "title": "13. Do the work",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/Automate/CreateSupplierBookingAction.cs",
+          "startPlaceholder": "public override async Task<ActionResult> ExecuteAsync(",
+          "endPlaceholder": "return Success(new CreateSupplierBookingOutput { BookingReference = bookingReference });"
+        }
+      ],
+      "notes": {
+        "path": ".demo/notes/13-execute.md"
+      }
+    },
+    {
+      "title": "14. It runs",
+      "steps": [
+        {
+          "action": "waitForInput",
+          "message": "Switch to the live backoffice run detail (or a real screen recording — a static screenshot can't be wired up here, see HANDOFF.md #9)."
+        }
+      ],
+      "notes": {
+        "path": ".demo/notes/14-payoff.md"
+      }
+    }
+  ]
+}

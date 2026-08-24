@@ -1,0 +1,34 @@
+{
+  "$schema": "https://demotime.show/demo-time.schema.json",
+  "title": "The marketer's turn — branching the automation",
+  "description": "Demo Time version of prezl.yaml stage \"flow\" / CODE-WALKTHROUGH-SCRIPT.md beats 15-16. One demo per beat so Next pauses on each.",
+  "version": 2,
+  "demos": [
+    {
+      "title": "15. One more native action — no external call needed",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/Automate/CheckTripAvailabilityAction.cs",
+          "startPlaceholder": "public override Task<ActionResult> ExecuteAsync(",
+          "endPlaceholder": "IsAvailable = !settings.ForceUnavailable,"
+        }
+      ],
+      "notes": {
+        "path": ".demo/notes/15-check.md"
+      }
+    },
+    {
+      "title": "16. If available, book and notify sales at the same time",
+      "steps": [
+        {
+          "action": "waitForInput",
+          "message": "Switch to the live automation canvas — the If/Parallel branch (no screenshot fallback available, see HANDOFF.md #9)."
+        }
+      ],
+      "notes": {
+        "path": ".demo/notes/16-branch.md"
+      }
+    }
+  ]
+}

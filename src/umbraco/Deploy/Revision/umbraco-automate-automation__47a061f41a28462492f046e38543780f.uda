@@ -1,0 +1,190 @@
+{
+  "Name": "Trip Enquiry Submitted \u2192 Check Availability \u2192 Book or Notify",
+  "Alias": "trip-enquiry-submitted-check-availability-book-or-notify",
+  "WorkspaceUdi": "umb://umbraco-automate-workspace/84e7f5767ee54d16a56bfc367393f35f",
+  "Trigger": {
+    "TriggerAlias": "travel.tripEnquirySubmitted",
+    "Settings": {}
+  },
+  "Steps": [
+    {
+      "Id": "c1cdd13b-ef05-402f-9c38-50e4b029c69b",
+      "ActionAlias": "travel.checkTripAvailability",
+      "Name": "Check Trip Availability",
+      "Alias": "checkTripAvailability",
+      "ConnectionId": null,
+      "Settings": {},
+      "InputMappings": {},
+      "Position": {
+        "X": 250,
+        "Y": 230
+      },
+      "ErrorBehavior": 2,
+      "RetryInterval": null,
+      "MaxRetries": null
+    },
+    {
+      "Id": "4bbf84d3-4059-4e37-a5ef-a930176b903c",
+      "ActionAlias": "umbracoAutomate.if",
+      "Name": "If",
+      "Alias": "if",
+      "ConnectionId": null,
+      "Settings": {
+        "conditions": {
+          "Groups": [
+            {
+              "Conditions": [
+                {
+                  "LeftOperand": "${ steps.checkTripAvailability.isAvailable }",
+                  "Operator": "Equals",
+                  "RightOperand": "true"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "InputMappings": {},
+      "Position": {
+        "X": 250,
+        "Y": 410
+      },
+      "ErrorBehavior": 2,
+      "RetryInterval": null,
+      "MaxRetries": null
+    },
+    {
+      "Id": "8b40330b-bd46-4c46-b9c1-4d3e7213b419",
+      "ActionAlias": "umbracoAutomate.parallel",
+      "Name": "Parallel",
+      "Alias": "parallel",
+      "ConnectionId": null,
+      "Settings": {},
+      "InputMappings": {},
+      "Position": {
+        "X": 72.96531234751575,
+        "Y": 581.8915410235503
+      },
+      "ErrorBehavior": 2,
+      "RetryInterval": null,
+      "MaxRetries": null
+    },
+    {
+      "Id": "9920689b-7303-48fb-89c3-ca0e362e3a8f",
+      "ActionAlias": "travel.createSupplierBooking",
+      "Name": "Create Supplier Booking",
+      "Alias": "createSupplierBooking",
+      "ConnectionId": null,
+      "Settings": {
+        "email": "${ trigger.email }",
+        "companyName": "${ trigger.companyName }",
+        "source": "Website"
+      },
+      "InputMappings": {},
+      "Position": {
+        "X": 164.6200763617539,
+        "Y": 909.71260231713
+      },
+      "ErrorBehavior": 2,
+      "RetryInterval": null,
+      "MaxRetries": null
+    },
+    {
+      "Id": "dfb598e9-fa03-43e5-8aa4-a639ffd949b0",
+      "ActionAlias": "slack.sendMessage",
+      "Name": "Send Slack Message",
+      "Alias": "sendMessage",
+      "ConnectionId": null,
+      "Settings": {
+        "channel": "#rick-test-channel",
+        "message": "New trip enquiry booked with our travel supplier \u2014 check the CRM for details."
+      },
+      "InputMappings": {},
+      "Position": {
+        "X": -139.6429242399958,
+        "Y": 783.971260231713
+      },
+      "ErrorBehavior": 2,
+      "RetryInterval": null,
+      "MaxRetries": null
+    },
+    {
+      "Id": "3051b943-376f-4535-bf05-446da1421b95",
+      "ActionAlias": "slack.sendMessage",
+      "Name": "Send Slack Message",
+      "Alias": "sendMessage2",
+      "ConnectionId": null,
+      "Settings": {
+        "channel": "#rick-test-channel",
+        "message": "No supplier availability for this trip enquiry \u2014 please follow up manually."
+      },
+      "InputMappings": {},
+      "Position": {
+        "X": 604.4712801420882,
+        "Y": 583.6448556900783
+      },
+      "ErrorBehavior": 2,
+      "RetryInterval": null,
+      "MaxRetries": null
+    }
+  ],
+  "Connections": [
+    {
+      "SourceStepId": "00000000-0000-0000-0000-000000000000",
+      "SourceHandle": null,
+      "TargetStepId": "c1cdd13b-ef05-402f-9c38-50e4b029c69b",
+      "TargetHandle": null,
+      "Outcome": null,
+      "Filter": null
+    },
+    {
+      "SourceStepId": "c1cdd13b-ef05-402f-9c38-50e4b029c69b",
+      "SourceHandle": null,
+      "TargetStepId": "4bbf84d3-4059-4e37-a5ef-a930176b903c",
+      "TargetHandle": null,
+      "Outcome": null,
+      "Filter": null
+    },
+    {
+      "SourceStepId": "4bbf84d3-4059-4e37-a5ef-a930176b903c",
+      "SourceHandle": "true",
+      "TargetStepId": "8b40330b-bd46-4c46-b9c1-4d3e7213b419",
+      "TargetHandle": null,
+      "Outcome": "true",
+      "Filter": null
+    },
+    {
+      "SourceStepId": "8b40330b-bd46-4c46-b9c1-4d3e7213b419",
+      "SourceHandle": "body",
+      "TargetStepId": "9920689b-7303-48fb-89c3-ca0e362e3a8f",
+      "TargetHandle": null,
+      "Outcome": "body",
+      "Filter": null
+    },
+    {
+      "SourceStepId": "8b40330b-bd46-4c46-b9c1-4d3e7213b419",
+      "SourceHandle": "body",
+      "TargetStepId": "dfb598e9-fa03-43e5-8aa4-a639ffd949b0",
+      "TargetHandle": null,
+      "Outcome": "body",
+      "Filter": null
+    },
+    {
+      "SourceStepId": "4bbf84d3-4059-4e37-a5ef-a930176b903c",
+      "SourceHandle": "false",
+      "TargetStepId": "3051b943-376f-4535-bf05-446da1421b95",
+      "TargetHandle": null,
+      "Outcome": "false",
+      "Filter": null
+    }
+  ],
+  "CanvasState": "{\u0022viewport\u0022:{\u0022x\u0022:238.2414080845573,\u0022y\u0022:151.99663335553146,\u0022zoom\u0022:0.9476576535526509},\u0022triggerPosition\u0022:{\u0022x\u0022:250,\u0022y\u0022:50}}",
+  "Udi": "umb://umbraco-automate-automation/47a061f41a28462492f046e38543780f",
+  "Dependencies": [
+    {
+      "Udi": "umb://umbraco-automate-workspace/84e7f5767ee54d16a56bfc367393f35f"
+    }
+  ],
+  "__type": "Umbraco.Deploy.Automate,Umbraco.Deploy.Automate.Artifacts.AutomateAutomationArtifact",
+  "__version": "18.0.1"
+}

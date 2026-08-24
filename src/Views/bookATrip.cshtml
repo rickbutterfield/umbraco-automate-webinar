@@ -1,0 +1,53 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.BookTrip>
+
+@using Clean.Core.Models.ViewModels
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+
+@{
+    Layout = "master.cshtml";
+    var submitted = false;
+    if (bool.TryParse(TempData["Success"]?.ToString() ?? "", out var success))
+    {
+        submitted = true;
+    }
+}
+
+@await Html.PartialAsync("~/Views/Partials/pageHeader.cshtml", new PageHeaderViewModel(Model.Name, Model.Title, Model.Subtitle, Model.MainImage))
+
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                @if (submitted)
+                {
+                    @if (success)
+                    {
+                        @Model.SuccessMessage
+                    }
+                    else
+                    {
+                        @Model.ErrorMessage
+                    }
+                }
+                else
+                {
+                    @Model.InstructionMessage
+                    <div class="my-5">
+                        @using (Html.BeginUmbracoForm<Webinar.Bookings.BookATripSurfaceController>("Submit"))
+                        {
+                            <div class="mb-3">
+                                <label for="company" class="form-label">Company name</label>
+                                <input type="text" class="form-control" id="company" name="company" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit enquiry</button>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</main>

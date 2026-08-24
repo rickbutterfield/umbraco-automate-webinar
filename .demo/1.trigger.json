@@ -1,0 +1,120 @@
+{
+  "$schema": "https://demotime.show/demo-time.schema.json",
+  "title": "A custom native trigger",
+  "description": "Demo Time version of prezl.yaml stage \"trigger\" / CODE-WALKTHROUGH-SCRIPT.md beats 1-8. One demo per beat so Next pauses on each.",
+  "version": 2,
+  "demos": [
+    {
+      "title": "1. Your own event",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/Bookings/TripEnquirySubmittedNotification.cs",
+          "startPlaceholder": "public class TripEnquirySubmittedNotification : INotification",
+          "endPlaceholder": "public required string CompanyName { get; init; }"
+        }
+      ],
+      "notes": {
+        "path": ".demo/notes/01-notification.md"
+      }
+    },
+    {
+      "title": "2. Raise it",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/Bookings/TripEnquiryService.cs",
+          "startPlaceholder": "await _eventAggregator.PublishAsync(",
+          "endPlaceholder": "CompanyName = companyName,"
+        }
+      ],
+      "notes": {
+        "path": ".demo/notes/02-publish.md"
+      }
+    },
+    {
+      "title": "3. Register it",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/Automate/TripEnquirySubmittedTrigger.cs",
+          "startPlaceholder": "[Trigger(\"travel.tripEnquirySubmitted\", \"Trip Enquiry Submitted\",",
+          "endPlaceholder": "Icon = \"icon-plane\")]"
+        }
+      ],
+      "notes": {
+        "path": ".demo/notes/03-attribute.md"
+      }
+    },
+    {
+      "title": "4. Name the notification",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/Automate/TripEnquirySubmittedTrigger.cs",
+          "startPlaceholder": ": NotificationTriggerBase<TripEnquirySubmittedTriggerSettings,",
+          "endPlaceholder": "TripEnquirySubmittedNotification>"
+        }
+      ],
+      "notes": {
+        "path": ".demo/notes/04-baseclass.md"
+      }
+    },
+    {
+      "title": "5. Settings become UI",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/Automate/TripEnquirySubmittedTriggerSettings.cs",
+          "startPlaceholder": "public sealed class TripEnquirySubmittedTriggerSettings",
+          "endPlaceholder": "public string? CompanyFilter { get; set; }"
+        }
+      ],
+      "notes": {
+        "path": ".demo/notes/05-settings.md"
+      }
+    },
+    {
+      "title": "6. Decide what later steps can use",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/Automate/TripEnquirySubmittedTriggerOutput.cs",
+          "startPlaceholder": "public sealed class TripEnquirySubmittedTriggerOutput",
+          "endPlaceholder": "public required string CompanyName { get; init; }"
+        }
+      ],
+      "notes": {
+        "path": ".demo/notes/06-output.md"
+      }
+    },
+    {
+      "title": "7. Fill the output in",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/Automate/TripEnquirySubmittedTrigger.cs",
+          "startPlaceholder": "public override IEnumerable<TriggerEvent> MapEvent(TripEnquirySubmittedNotification notification)",
+          "endPlaceholder": "CompanyName = notification.CompanyName,"
+        }
+      ],
+      "notes": {
+        "path": ".demo/notes/07-mapevent.md"
+      }
+    },
+    {
+      "title": "8. Let the editor narrow it",
+      "steps": [
+        {
+          "action": "highlight",
+          "path": "src/Automate/TripEnquirySubmittedTrigger.cs",
+          "startPlaceholder": "protected override bool CanHandle(",
+          "endPlaceholder": ".Contains(output.CompanyName, StringComparer.OrdinalIgnoreCase);"
+        }
+      ],
+      "notes": {
+        "path": ".demo/notes/08-filter.md"
+      }
+    }
+  ]
+}
