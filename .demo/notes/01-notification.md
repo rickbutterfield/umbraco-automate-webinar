@@ -7,4 +7,4 @@ If you've written Umbraco code before, you've already written one of these, prob
 Keep it in your mind for a minute — it's the thread that ties everything else in this walkthrough together.
 
 ---
-- **Check before saying this live:** "We have addons for each of our own products, and they all have custom triggers and actions" is stated as already shipped. `docs/engineering-spec.md` lists Forms/Commerce/Workflow/Engage Automate providers under "Phase 4: DXP Providers" — future roadmap, not current. Same risk `HANDOFF.md` §11 already flags. Confirm with those teams or soften the wording.
+- **Check before saying this live:** "We have addons for each of our own products, and they all have custom triggers and actions" is stated as already shipped. `docs/engineering-spec.md` lists Forms/Commerce/Workflow/Engage Automate providers under "Phase 4: DXP Providers" — future roadmap, not current. Confirm with those teams or soften the wording.

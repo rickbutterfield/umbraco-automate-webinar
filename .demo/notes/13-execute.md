@@ -7,4 +7,4 @@ Once a booking is made, we hand back a `Success` with the booking reference, or 
 That's a complete custom action: attribute, settings, output, connection, and this method. Nothing else Automate needs from us.
 
 ---
-- "Then call `ITravelSupplierClient`, our vendor's SDK" states the fake stand-in as literally real. `Supplier/ITravelSupplierClient.cs`'s own doc comment says it "stands in for whatever supplier SDK you actually use — not the interesting part," and it's still one of `HANDOFF.md`'s three deliberate jokes ("pretend this is your vendor's SDK"). Either restore "pretend," or drop it from HANDOFF's joke list so the two agree.
+- "Then call `ITravelSupplierClient`, our vendor's SDK" states the fake stand-in as literally real. `Supplier/ITravelSupplierClient.cs`'s own doc comment says it "stands in for whatever supplier SDK you actually use — not the interesting part." This was originally a deliberate joke ("pretend this is your vendor's SDK") — restore "pretend," or decide it's not a joke worth keeping and say so plainly instead.

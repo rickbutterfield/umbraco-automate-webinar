@@ -23,7 +23,7 @@
       "steps": [
         {
           "action": "waitForInput",
-          "message": "Switch to the live automation canvas — the If/Parallel branch (no screenshot fallback available, see HANDOFF.md #9)."
+          "message": "Switch to the live automation canvas — the If/Parallel branch (no screenshot fallback available)."
         }
       ],
       "notes": {
