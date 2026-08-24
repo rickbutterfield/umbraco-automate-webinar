@@ -2,5 +2,4 @@
   <Folder Name="/src/">
     <Project Path="src/Webinar.Site.csproj" />
   </Folder>
-  <Project Path="../Umbraco.Automate/Umbraco.Automate/src/Umbraco.Automate.Web.StaticAssets/Umbraco.Automate.Web.StaticAssets.csproj" />
 </Solution>
