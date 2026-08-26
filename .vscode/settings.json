@@ -1,4 +1,24 @@
 {
   "demoTime.defaultFileType": "json",
-  "demoTime.insertTypingMode": "character-by-character"
+  "demoTime.insertTypingMode": "character-by-character",
+  "workbench.statusBar.visible": true,
+  "workbench.editor.showTabs": "multiple",
+  "workbench.activityBar.location": "default",
+  "demoTime.highlightBlur": 0,
+  "demoTime.highlightZoomEnabled": 0,
+  "demoTime.highlightOpacity": 0.5,
+  "editor.fontSize": 14,
+  "presentation-mode.configBackup": {
+    "editor.fontSize": 14,
+    "editor.matchBrackets": "undefined",
+    "editor.minimap.enabled": "undefined",
+    "editor.scrollbar.verticalScrollbarSize": "undefined",
+    "workbench.activityBar.visible": "undefined",
+    "workbench.statusBar.visible": true,
+    "workbench.colorTheme": "undefined",
+    "zenMode.centerLayout": "undefined",
+    "git.blame.editorDecoration.enabled": "undefined",
+    "workbench.colorCustomizations": "undefined",
+    "window.zoomLevel": "undefined"
+  }
 }
